@@ -3,6 +3,8 @@
   - "01-tutorials/**"
 02-use-cases:
   - "02-use-cases/**"
+03-integrations:
+  - "03-integrations/**"
 01-AgentCore-runtime:
   - "01-tutorials/01-AgentCore-runtime/**"
 02-AgentCore-gateway:
@@ -37,3 +39,7 @@ text-to-python-ide:
   - "02-use-cases/text-to-python-ide/**"
 video-games-sales-assistant:
   - "02-use-cases/video-games-sales-assistant/**"
+bedrock-agent:
+  - "03-integrations/bedrock-agent/**"
+agentic-frameworks:
+  - "03-integrations/agentic-frameworks/**"
