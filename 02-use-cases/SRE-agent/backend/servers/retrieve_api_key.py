@@ -121,7 +121,6 @@ def _retrieve_secret_value(secrets_manager_arn: str, region: str) -> Optional[st
             # Try to parse as JSON first
             try:
                 secret_data = json.loads(secret_string)
-                logger.info(f"Secret is JSON with keys: {list(secret_data.keys())}")
 
                 # Extract the API key from the known field
                 api_key = secret_data.get("api_key_value")
@@ -132,7 +131,6 @@ def _retrieve_secret_value(secrets_manager_arn: str, region: str) -> Optional[st
                     return api_key
                 else:
                     logger.error("No 'api_key_value' field found in secret")
-                    logger.error(f"Available fields: {list(secret_data.keys())}")
                     return None
 
             except json.JSONDecodeError:
@@ -192,12 +190,7 @@ def retrieve_api_key(
     secrets_manager_arn = api_key_secret_arn.get("secretArn")
     if not secrets_manager_arn:
         logger.error("No secretArn found in apiKeySecretArn")
-        logger.error(
-            f"Available fields in apiKeySecretArn: {list(api_key_secret_arn.keys())}"
-        )
         return None
-
-    logger.info(f"Using Secrets Manager ARN: {secrets_manager_arn}")
 
     # Retrieve the API key from Secrets Manager
     api_key = _retrieve_secret_value(secrets_manager_arn, region)
