@@ -269,7 +269,13 @@ def get_customer_profile(
             "",
         ]
 
-        print(profile_info)
+        # Log only non-sensitive information for monitoring
+        logger.info(
+            "Accessed customer profile: ID=%s, Tier=%s, Support Cases=%d",
+            customer_id_value,
+            tier,
+            support_cases
+        )
 
         # Add customer tier benefits
         if tier == "Premium" or tier == "VIP":
