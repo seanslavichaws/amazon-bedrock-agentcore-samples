@@ -361,7 +361,7 @@ if __name__ == "__main__":
         try:
             response = ssm.get_parameter(Name=f"/AuroraOps/{args.environment}")
             secret_name = response['Parameter']['Value']
-            print(f"Testing connection using secret {secret_name}...")
+            print("Testing database connection using retrieved secret.")
             verify_secret(secret_name, args.region, True)
         except Exception as e:
             print(f"Error testing connection: {str(e)}")
