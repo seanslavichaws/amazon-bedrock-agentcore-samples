@@ -117,11 +117,9 @@ def _create_agent_runtime(
     # Log environment variables being passed to AgentCore (mask sensitive data)
     logging.info("🚀 Environment variables being passed to AgentCore Runtime:")
     for key, value in env_vars.items():
-        masked_value = f"{'*' * 20}...{value[-8:] if len(value) > 8 else '***'}"
         if key in ["ANTHROPIC_API_KEY", "GATEWAY_ACCESS_TOKEN"]:
-            logging.info(f"   {key}: {masked_value}")
-        else:
-            logging.info(f"   {key}: {masked_value}")
+            logging.info(f"   {key}: [REDACTED]")
+
     try:
         response = client.create_agent_runtime(
             agentRuntimeName=runtime_name,
