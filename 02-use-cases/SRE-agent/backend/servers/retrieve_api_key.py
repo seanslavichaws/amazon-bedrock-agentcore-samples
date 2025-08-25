@@ -132,7 +132,7 @@ def _retrieve_secret_value(secrets_manager_arn: str, region: str) -> Optional[st
                     return api_key
                 else:
                     logger.error("No 'api_key_value' field found in secret")
-                    logger.info(f"Available fields: {list(secret_data.keys())}")
+                    logger.error(f"Available fields: {list(secret_data.keys())}")
                     return None
 
             except json.JSONDecodeError:
