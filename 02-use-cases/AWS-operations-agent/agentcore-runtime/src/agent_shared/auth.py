@@ -85,7 +85,7 @@ def setup_oauth():
         _token_getter = get_token_sync
         _oauth_initialized = True
         
-        logger.info(f"✅ OAuth initialized with provider: {provider_name}")
+        logger.info("✅ OAuth initialized.")
         return True
         
     except Exception as e:
