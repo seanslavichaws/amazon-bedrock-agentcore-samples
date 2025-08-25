@@ -115,7 +115,7 @@ class CredentialsManager:
             )
             
             print(f"   ✅ Provider created successfully!")
-            print(f"      • ARN: {response.get('oauth2CredentialProviderArn')}")
+            # Logging of full ARN omitted to avoid exposing sensitive information.
             print(f"      • Domain: {domain}")
             print(f"      • Scopes: {scopes}")
             
