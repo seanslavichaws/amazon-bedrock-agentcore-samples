@@ -118,8 +118,10 @@ def _create_agent_runtime(
     logging.info("🚀 Environment variables being passed to AgentCore Runtime:")
     for key, value in env_vars.items():
         if key in ["ANTHROPIC_API_KEY", "GATEWAY_ACCESS_TOKEN"]:
-            logging.info(f"   {key}: [REDACTED]")
-
+            masked_value = f"{'*' * 20}...{value[-8:] if len(value) > 8 else '***'}"
+            logging.info(f"   {key}: {masked_value}")
+        else:
+            logging.info(f"   {key}: {value}")
     try:
         response = client.create_agent_runtime(
             agentRuntimeName=runtime_name,
@@ -270,7 +272,7 @@ def main():
     logging.info(f"   LLM_PROVIDER: {llm_provider}")
     if anthropic_api_key:
         logging.info(
-            "   ANTHROPIC_API_KEY: set"
+            f"   ANTHROPIC_API_KEY: {'*' * 20}...{anthropic_api_key[-8:] if len(anthropic_api_key) > 8 else '***'}"
         )
     else:
         logging.info(
@@ -279,7 +281,7 @@ def main():
 
     if gateway_access_token:
         logging.info(
-            "   GATEWAY_ACCESS_TOKEN: set"
+            f"   GATEWAY_ACCESS_TOKEN: {'*' * 20}...{gateway_access_token[-8:] if len(gateway_access_token) > 8 else '***'}"
         )
 
     if not gateway_access_token:
