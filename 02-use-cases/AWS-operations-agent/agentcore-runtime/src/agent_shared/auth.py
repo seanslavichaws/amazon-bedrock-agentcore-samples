@@ -68,9 +68,9 @@ def setup_oauth():
         scopes = oauth_settings['scopes']
         auth_flow = oauth_settings['auth_flow']
         
-        logger.info(f"🔐 Setting up OAuth with provider: {provider_name}")
-        logger.info(f"🔐 Scopes: {scopes}")
-        logger.info(f"🔐 Auth flow: {auth_flow}")
+        # logger.info(f"🔐 Setting up OAuth with provider: {provider_name}")
+        # logger.info(f"🔐 Scopes: {scopes}")
+        # logger.info(f"🔐 Auth flow: {auth_flow}")
         
         # Create token getter function
         @requires_access_token(
