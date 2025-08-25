@@ -135,7 +135,7 @@ class OAuthTester:
                 
                 scopes = ['api']  # Default scopes
                 
-                print(f"   📋 Using provider from config: {provider_name}")
+                print(f"   📋 Using provider from config: [REDACTED]")
                 print(f"   📋 Using scopes: {scopes}")
             else:
                 print("   ⚠️  OAuth provider config not found, using defaults")
