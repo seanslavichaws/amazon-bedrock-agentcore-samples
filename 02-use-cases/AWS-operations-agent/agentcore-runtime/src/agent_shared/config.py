@@ -112,7 +112,6 @@ def get_oauth_settings():
             'auth_flow': 'M2M'  # Machine-to-Machine flow
         }
         
-        logger.info(f"🔐 OAuth provider set to: {provider_name}")
         return oauth_settings
         
     except Exception as e:
