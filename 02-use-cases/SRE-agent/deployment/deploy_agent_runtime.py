@@ -272,7 +272,7 @@ def main():
     logging.info(f"   LLM_PROVIDER: {llm_provider}")
     if anthropic_api_key:
         logging.info(
-            f"   ANTHROPIC_API_KEY: {'*' * 20}...{anthropic_api_key[-8:] if len(anthropic_api_key) > 8 else '***'}"
+            "   ANTHROPIC_API_KEY: set"
         )
     else:
         logging.info(
@@ -281,7 +281,7 @@ def main():
 
     if gateway_access_token:
         logging.info(
-            f"   GATEWAY_ACCESS_TOKEN: {'*' * 20}...{gateway_access_token[-8:] if len(gateway_access_token) > 8 else '***'}"
+            "   GATEWAY_ACCESS_TOKEN: set"
         )
 
     if not gateway_access_token:
