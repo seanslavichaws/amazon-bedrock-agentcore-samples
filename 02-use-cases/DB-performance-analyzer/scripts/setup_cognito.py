@@ -19,13 +19,6 @@ def main():
     # Print Cognito details
     print(f"Cognito User Pool ID: {cognito_result['client_info']['user_pool_id']}")
     print(f"Cognito Client ID: {cognito_result['client_info']['client_id']}")
-    # Mask the client secret before logging. Show only first 4 and last 4 chars if enough length.
-    client_secret = cognito_result['client_info']['client_secret']
-    if client_secret and len(client_secret) >= 9:
-        masked_secret = f"{client_secret[:4]}{'*' * (len(client_secret)-8)}{client_secret[-4:]}"
-    else:
-        masked_secret = "***REDACTED***"
-    print(f"Cognito Client Secret: {masked_secret}")
     print(f"Cognito Domain: {cognito_result['client_info']['domain_prefix']}")
     print(f"Discovery URL: {cognito_result['authorizer_config']['customJWTAuthorizer']['discoveryUrl']}")
     
