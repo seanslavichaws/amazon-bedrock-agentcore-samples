@@ -85,15 +85,6 @@ def update_env_file(file_path, updates, description):
             file.write(content)
         
         print(f"\n✅ Created new {description} with Cognito configuration:")
-    
-    # Print the configuration values (redact sensitive fields)
-    SENSITIVE_KEYS = {'COGNITO_CLIENT_SECRET'}
-    for key, value in updates.items():
-        if value:
-            if key in SENSITIVE_KEYS:
-                print(f"   {key}=***REDACTED***")
-            else:
-                print(f"   {key}={value}")
 
 # Update local .env file with the new values (existing functionality)
 env_file_path = '.env'
