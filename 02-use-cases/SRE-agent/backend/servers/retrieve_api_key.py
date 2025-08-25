@@ -254,7 +254,8 @@ def main() -> None:
 
     if api_key:
         print("✅ Successfully retrieved API key")
-        print(f"📄 API Key: {api_key}")
+        # Do not print the full API key.
+        print("ℹ️ API key has been securely retrieved and is available for programmatic use.")
     else:
         print("❌ Failed to retrieve API key")
 
