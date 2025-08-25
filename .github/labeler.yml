@@ -1,0 +1,19 @@
+# .github/labeler.yml
+01-tutorials:
+  - "01-tutorials/**"
+02-use-cases:
+  - "02-use-cases/**"
+01-AgentCore-runtime:
+  - "01-tutorials/01-AgentCore-runtime/**"
+02-AgentCore-gateway:
+  - "01-tutorials/02-AgentCore-gateway/**"
+03-AgentCore-identity:
+  - "01-tutorials/03-AgentCore-identity/**"
+04-AgentCore-memory:
+  - "01-tutorials/04-AgentCore-memory/**"
+05-AgentCore-tools:
+  - "01-tutorials/05-AgentCore-tools/**"
+06-AgentCore-observability:
+  - "01-tutorials/06-AgentCore-observability/**"
+07-AgentCore-E2E:
+  - "01-tutorials/07-AgentCore-E2E/**"
