@@ -27,10 +27,10 @@ The following diagram illustrates the architecture of this LlamaIndex agent impl
 
 ## Installation
 
-1. Clone this repository:
+1. If you've cloned the entire Amazon Bedrock AgentCore Samples repository:
 ```bash
-git clone https://github.com/yourusername/llamaindex-agentcore-observability.git
-cd llamaindex-agentcore-observability
+git clone https://github.com/aws-samples/amazon-bedrock-agentcore-samples.git
+cd amazon-bedrock-agentcore-samples/01-tutorials/06-AgentCore-observability/02-Agent-not-hosted-on-runtime/LlamaIndex
 ```
 
 2. Create and activate a virtual environment:
@@ -49,6 +49,11 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+
+
+4. When opening the notebook in Jupyter or VS Code:
+   - Select the "venv" kernel from the kernel selector
+   - If the kernel doesn't appear in the list, restart Jupyter or VS Code
 
 ## Configuration
 
@@ -238,6 +243,16 @@ To use a different Bedrock model, set the `BEDROCK_MODEL_ID` environment variabl
 3. **Bedrock Model Access**
    - Verify you have access to the Bedrock model specified in `BEDROCK_MODEL_ID`
    - Check Bedrock model throughput quotas for your account
+
+4. **OpenTelemetry Warnings in Jupyter Notebooks**
+   - When running `opentelemetry-instrument` in Jupyter notebook cells, you may see warnings like:
+     ```
+     WARNING:opentelemetry.trace:Overriding of current TracerProvider is not allowed
+     ```
+     or messages about `SpanDropEvent` and spans exiting with errors.
+   - These warnings are expected in notebook environments and don't affect the agent's functionality or observability data collection
+   - They occur because Jupyter has its own instrumentation context, and running cells multiple times can cause OpenTelemetry to attempt re-registering
+   - You can safely ignore these warnings as long as your agent executes correctly and traces appear in CloudWatch
 
 ### CloudWatch Log Groups
 
