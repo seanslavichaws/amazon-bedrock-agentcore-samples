@@ -50,7 +50,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-
 4. When opening the notebook in Jupyter or VS Code:
    - Select the "venv" kernel from the kernel selector
    - If the kernel doesn't appear in the list, restart Jupyter or VS Code
@@ -79,9 +78,6 @@ OTEL_PYTHON_DISTRO=aws_distro
 OTEL_PYTHON_CONFIGURATOR=aws_configurator
 OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
 OTEL_TRACES_EXPORTER=otlp
-
-# Optional: Custom OTLP endpoint (default: http://localhost:4318/v1/traces)
-# OTEL_EXPORTER_OTLP_ENDPOINT=http://custom-endpoint:4318/v1/traces
 ```
 
 ### CloudWatch Log Group Setup
@@ -127,7 +123,7 @@ This version allows you to correlate traces across multiple agent runs by using 
 
 ## Jupyter Notebook Tutorial
 
-The repository includes a Jupyter notebook (`llama_index_setup.ipynb`) that demonstrates:
+The repository includes a Jupyter notebook (`LlamaIndex_Observability.ipynb`) that demonstrates:
 
 1. Setting up the environment and prerequisites
 2. Creating the necessary CloudWatch log groups
@@ -147,85 +143,13 @@ Key instrumentation points:
 - Tool execution (each tool has its own span)
 - Agent query processing
 
-### About the OpenTelemetry Endpoint
-
-The OTLP endpoint configuration works as follows:
-
-- **Local development**: By default, when running locally, the agent uses `http://localhost:4318/v1/traces`. This assumes you have a local OpenTelemetry Collector running on port 4318.
-
-- **AWS environment**: When running in AWS, the code will automatically detect the AWS environment and use the AWS X-Ray OTLP endpoint.
-
-- **Custom endpoint**: You can set a custom endpoint by configuring the `OTEL_EXPORTER_OTLP_ENDPOINT` environment variable.
-
-### Session Tracking
-
-The agent supports session tracking using OpenTelemetry baggage:
-
-```python
-from opentelemetry import baggage, context
-
-# Set session context
-ctx = baggage.set_baggage("session.id", session_id)
-token = context.attach(ctx)
-
-# ... agent execution ...
-
-# Detach context when done
-context.detach(token)
-```
-
-This allows you to correlate multiple agent runs and API calls within a single user session.
-
 ### Viewing Traces
 
 To view the traces:
 1. Ensure CloudWatch Transaction Search is enabled
 2. Navigate to the CloudWatch console
-3. Go to Application Signals (APM) > Transaction search
+3. Go to GenAI Observability
 4. Look for traces with your agent's service name (default: `agentic-llamaindex-agentcore`)
-
-The repository includes example screenshots of the CloudWatch dashboard in the `images/` directory:
-- `llama_index_sessions.png`: Shows the sessions view
-- `llama_index_traces.png`: Shows the traces list view
-- `llama_index_trace_details.png`: Shows detailed trace information
-
-### Setting Up a Local Collector (Development)
-
-For local development, you may want to run an OpenTelemetry Collector. You can use the AWS Distro for OpenTelemetry Collector (ADOT):
-
-```bash
-docker run -p 4318:4318 -p 4317:4317 \
-  -v $(pwd)/collector-config.yaml:/etc/otelcol/config.yaml \
-  amazon/aws-otel-collector
-```
-
-Where `collector-config.yaml` contains your collector configuration with AWS exporters.
-
-## AWS Bedrock Integration
-
-The agent uses AWS Bedrock as the LLM backend. The integration is handled by the `get_bedrock_model()` function in both agent implementations:
-
-```python
-def get_bedrock_model():
-    model_id = os.getenv("BEDROCK_MODEL_ID", "anthropic.claude-3-haiku-20240307-v1:0")
-    region = os.getenv("AWS_DEFAULT_REGION", "us-west-2")
-    
-    try:
-        # Let boto3 handle credential resolution automatically
-        bedrock_model = BedrockConverse(
-            model=model_id,
-            region_name=region,
-            # No explicit credentials - boto3 will find them automatically
-        )
-        logger.info(f"Successfully initialized Bedrock model: {model_id} in region: {region}")
-        return bedrock_model
-    except Exception as e:
-        logger.error(f"Failed to initialize Bedrock model: {str(e)}")
-        logger.error("Please ensure you have proper AWS credentials configured and access to the Bedrock model")
-        raise
-```
-
-To use a different Bedrock model, set the `BEDROCK_MODEL_ID` environment variable before running the agent.
 
 ## Troubleshooting
 
@@ -263,14 +187,6 @@ agents/llama-index-agent-logs
 
 If traces are not appearing, ensure this log group exists and is properly configured in your `.env` file.
 
-## Next Steps
-
-Now that you have a basic understanding of LlamaIndex with OpenTelemetry set up, you can:
-
-1. **Add More Complex Tools**: Enhance your agent with additional tools beyond simple arithmetic
-2. **Create Multi-agent Architectures**: Build systems with multiple specialized agents
-3. **Implement Custom Metadata**: Add business-specific metadata to your traces for better analysis
-4. **Set Up CloudWatch Alarms**: Create alarms on key metrics like latency and token usage
 
 ## Additional Resources
 
