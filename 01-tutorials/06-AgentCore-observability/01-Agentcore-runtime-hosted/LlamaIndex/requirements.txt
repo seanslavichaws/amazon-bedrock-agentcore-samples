@@ -1,0 +1,7 @@
+llama-index
+llama-index-llms-bedrock-converse
+llama-index-observability-otel
+boto3
+bedrock-agentcore<=0.1.5
+bedrock-agentcore-starter-toolkit==0.1.14
+ipykernel>=6.0.0
