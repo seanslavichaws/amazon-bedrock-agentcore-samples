@@ -44,7 +44,6 @@ Each framework folder contains:
 - **Automatic Observability**: Built-in telemetry collection when agents run on AgentCore Runtime
 - **CloudWatch Integration**: View traces and metrics in GenAI Observability dashboard
 - **Framework Flexibility**: Support for multiple agentic frameworks
-- **Production Ready**: Scalable deployment with comprehensive monitoring
 
 ## Cleanup
 

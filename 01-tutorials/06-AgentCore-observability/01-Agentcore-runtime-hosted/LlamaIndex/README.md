@@ -23,7 +23,6 @@ A LlamaIndex arithmetic agent that can:
 - **LlamaIndex Integration**: Uses LlamaIndex FunctionAgent with async workflows
 - **Automatic Observability**: Built-in telemetry collection with LlamaIndex OpenTelemetry instrumentation
 - **CloudWatch Integration**: View agent performance in GenAI Observability dashboard
-- **Production Ready**: Scalable deployment on managed infrastructure with tracing enabled
 
 ## Prerequisites
 
@@ -66,7 +65,6 @@ The tutorial covers:
 - **Agent Workflow Traces**: Complete execution flow of LlamaIndex FunctionAgent
 - **Tool Call Monitoring**: Track arithmetic function invocations
 - **LLM Interaction Traces**: Bedrock model calls with input/output tracking
-- **Custom Span Attributes**: Question and answer metadata for enhanced debugging
 
 ## Next Steps
 
